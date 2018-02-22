@@ -198,6 +198,11 @@ open class PhoneNumberTextField: UITextField, UITextFieldDelegate {
             return false
         }
         
+        // basically this is a signal that the keyboard's auto text insertion has been invoked
+        if string == " " && text.count == 0 {
+            return true
+        }
+        
         // allow delegate to intervene
         guard _delegate?.textField?(textField, shouldChangeCharactersIn: range, replacementString: string) ?? true else {
             return false
