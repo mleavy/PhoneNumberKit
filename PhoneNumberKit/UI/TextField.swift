@@ -194,6 +194,12 @@ open class PhoneNumberTextField: UITextField, UITextFieldDelegate {
     }
     
     open func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        // This allows for the case when a user autocompletes a phone number:
+        if range == NSRange(location: 0, length: 0) && string == " " {
+            return true
+        }
+        
         guard let text = text else {
             return false
         }
